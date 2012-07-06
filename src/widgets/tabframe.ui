@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TabFrame</class>
+ <widget class="QWidget" name="TabFrame">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>4</number>
+   </property>
+   <property name="margin">
+    <number>4</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>4</number>
+     </property>
+     <item>
+      <widget class="UrlLineEdit" name="urlLineEdit"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="goButton">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>GO</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="WebViewForTabs" name="webView">
+     <property name="url">
+      <url>
+       <string>about:blank</string>
+      </url>
+     </property>
+     <property name="renderHints">
+      <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::TextAntialiasing</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WebViewForTabs</class>
+   <extends>QWebView</extends>
+   <header>src/widgets/webviewfortabs.h</header>
+   <slots>
+    <signal>openNewTab(QString)</signal>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>UrlLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>src/widgets/urllineedit.h</header>
+   <slots>
+    <signal>enterPressed()</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
