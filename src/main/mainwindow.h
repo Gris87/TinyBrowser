@@ -4,11 +4,15 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 
-#include <QStringList>
-
 namespace Ui {
 class MainWindow;
 }
+
+struct SUndoUrl
+{
+    QString url;
+    int index;
+};
 
 class MainWindow : public QMainWindow
 {
@@ -16,7 +20,7 @@ class MainWindow : public QMainWindow
 
 public:
     Ui::MainWindow *ui;
-    QStringList mUndoUrls;
+    QList<SUndoUrl> mUndoUrls;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();

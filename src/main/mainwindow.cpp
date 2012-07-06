@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     addTab("yandex.ru");
+    addTab("");
 
     addAction(ui->actionClose_current_tab);
     addAction(ui->actionUndo);
@@ -79,7 +80,7 @@ void MainWindow::updateTabsStyle()
                                                                     "stop: 0.5 #EEA0A0, stop: 1.0 #FFC0C0) "
                                      "}\n"
                                      "QTabBar::tab:!selected { "
-                                        "margin-top: 2px "
+                                        "margin-top: 3px "
                                      "}"
                                      );
 }
@@ -119,13 +120,20 @@ void MainWindow::addTab(QString aUrl)
     updateTabsStyle();
 }
 
-void MainWindow::tabUrlChanged(const QUrl &/*aUrl*/)
+void MainWindow::tabUrlChanged(const QUrl &aUrl)
 {
     int index=ui->mainTabWidget->indexOf((QWidget*)sender()->parent());
 
-    if (index==ui->mainTabWidget->count()-1)
+    if (index>=0)
     {
-        addTab("");
+        ui->mainTabWidget->setTabText(index, aUrl.toString());
+        ui->mainTabWidget->setTabToolTip(index, "");
+        ui->mainTabWidget->setTabIcon(index, QWebSettings::iconForUrl(aUrl));
+
+        if (index==ui->mainTabWidget->count()-1)
+        {
+            addTab("");
+        }
     }
 }
 
@@ -157,7 +165,10 @@ void MainWindow::on_mainTabWidget_tabCloseRequested(int index)
 {
     if (index<ui->mainTabWidget->count()-1)
     {
-        mUndoUrls.append(((TabFrame*)ui->mainTabWidget->widget(index))->ui->urlLineEdit->text());
+        SUndoUrl aUndoUrl;
+        aUndoUrl.url=((TabFrame*)ui->mainTabWidget->widget(index))->ui->urlLineEdit->text();
+        aUndoUrl.index=index;
+        mUndoUrls.append(aUndoUrl);
 
         delete ui->mainTabWidget->widget(index);
 
@@ -184,6 +195,15 @@ void MainWindow::on_actionUndo_triggered()
 {
     if (mUndoUrls.length()>0)
     {
-        addTab(mUndoUrls.takeLast());
+        if (ui->mainTabWidget->count()==1)
+        {
+            ui->mainTabWidget->setTabText(ui->mainTabWidget->count()-1, "+");
+        }
+
+        SUndoUrl aUndoUrl=mUndoUrls.takeLast();
+
+        addTab(aUndoUrl.url);
+        ui->mainTabWidget->tabBar()->moveTab(ui->mainTabWidget->count()-2, aUndoUrl.index);
+        ui->mainTabWidget->setCurrentIndex(aUndoUrl.index);
     }
 }

@@ -5,6 +5,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    dir=QApplication::applicationDirPath()+"/";
+
     mainwindow=new MainWindow;
     mainwindow->show();
 

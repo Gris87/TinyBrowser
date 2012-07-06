@@ -11,4 +11,6 @@
 
 extern MainWindow* mainwindow;
 
+extern QString dir;
+
 #endif // GLOBAL_H
