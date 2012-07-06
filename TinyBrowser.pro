@@ -25,14 +25,18 @@ SOURCES +=  src/main.cpp \
             src/main/mainwindow.cpp \
             src/widgets/tabframe.cpp \
             src/widgets/urllineedit.cpp \
-            src/other/global.cpp \
-    src/widgets/webviewfortabs.cpp
+            src/widgets/webviewfortabs.cpp \
+            src/widgets/browsertabwidget.cpp \
+            src/widgets/browsertabbar.cpp \
+            src/other/global.cpp
 
 HEADERS  += src/main/mainwindow.h \
             src/widgets/tabframe.h \
             src/widgets/urllineedit.h \
-            src/other/global.h \
-    src/widgets/webviewfortabs.h
+            src/widgets/webviewfortabs.h \
+            src/widgets/browsertabwidget.h \
+            src/widgets/browsertabbar.h \
+            src/other/global.h
 
 FORMS    += src/main/mainwindow.ui \
             src/widgets/tabframe.ui

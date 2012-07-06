@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     addTab("yandex.ru");
 
     addAction(ui->actionClose_current_tab);
+    addAction(ui->actionUndo);
 }
 
 MainWindow::~MainWindow()
@@ -46,13 +47,15 @@ void MainWindow::setOptimalTabSize()
                                         "border-top-left-radius: 4px; "
                                         "border-top-right-radius: 4px; "
                                         "width: "+QString::number(aTabWidth)+"px; "
-                                        "text-align: left; "
                                         "padding: 2px"
                                      "}\n"
                                      "QTabBar::tab:selected, QTabBar::tab:hover { "
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
                                                                     "stop: 0 #fafafa, stop: 0.4 #f4f4f4,"
                                                                     "stop: 0.5 #e7e7e7, stop: 1.0 #fafafa)"
+                                     "}\n"
+                                     "QTabBar::tab:last { "
+                                        "width: 16px; "
                                      "}\n"
                                      "QTabBar::tab:selected { "
                                         "border-color: #9B9B9B; "
@@ -89,7 +92,7 @@ void MainWindow::addTab(QString aUrl)
 
     if (aUrl=="")
     {
-        ui->mainTabWidget->addTab(aTab, "New tab");
+        ui->mainTabWidget->addTab(aTab, "+");
     }
     else
     {
@@ -99,7 +102,7 @@ void MainWindow::addTab(QString aUrl)
     setOptimalTabSize();
 }
 
-void MainWindow::tabUrlChanged(const QUrl &aUrl)
+void MainWindow::tabUrlChanged(const QUrl &/*aUrl*/)
 {
     int index=ui->mainTabWidget->indexOf((QWidget*)sender()->parent());
 
@@ -118,6 +121,7 @@ void MainWindow::tabTitleChanged(const QString &aTitle)
         if (index>=0)
         {
             ui->mainTabWidget->setTabText(index, aTitle);
+            ui->mainTabWidget->setTabToolTip(index, aTitle);
         }
     }
 }
@@ -136,11 +140,18 @@ void MainWindow::on_mainTabWidget_tabCloseRequested(int index)
 {
     if (index<ui->mainTabWidget->count()-1)
     {
+        mUndoUrls.append(((TabFrame*)ui->mainTabWidget->widget(index))->ui->urlLineEdit->text());
+
         delete ui->mainTabWidget->widget(index);
 
         if (index>0 && index==ui->mainTabWidget->count()-1)
         {
             ui->mainTabWidget->setCurrentIndex(index-1);
+        }
+
+        if (ui->mainTabWidget->count()==0)
+        {
+            ui->mainTabWidget->setTabText(0, "New tab");
         }
 
         setOptimalTabSize();
@@ -150,4 +161,12 @@ void MainWindow::on_mainTabWidget_tabCloseRequested(int index)
 void MainWindow::on_actionClose_current_tab_triggered()
 {
     on_mainTabWidget_tabCloseRequested(ui->mainTabWidget->currentIndex());
+}
+
+void MainWindow::on_actionUndo_triggered()
+{
+    if (mUndoUrls.length()>0)
+    {
+        addTab(mUndoUrls.takeLast());
+    }
 }

@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 
+#include <QStringList>
+
 namespace Ui {
 class MainWindow;
 }
@@ -14,6 +16,7 @@ class MainWindow : public QMainWindow
 
 public:
     Ui::MainWindow *ui;
+    QStringList mUndoUrls;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -34,6 +37,7 @@ private slots:
 
     void on_mainTabWidget_tabCloseRequested(int index);
     void on_actionClose_current_tab_triggered();
+    void on_actionUndo_triggered();
 };
 
 #endif // MAINWINDOW_H
