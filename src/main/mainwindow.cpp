@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowState(Qt::WindowMaximized);
+
     addTab("yandex.ru");
     addTab("");
 
@@ -34,13 +36,12 @@ void MainWindow::updateTabsStyle()
 
     ui->mainTabWidget->setStyleSheet(
                                      "QTabWidget::pane { "
-                                        "border-top: 2px solid #C2C7CB "
+                                        "border-top: 2px solid #C2C7CB; "
                                      "}\n"
                                      "QTabWidget::tab-bar { "
-                                        "left: 4px "
+                                        "left: 4px; "
                                      "}\n"
                                      "QTabBar::tab { "
-
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
                                                                     "stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,"
                                                                     "stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3); "
@@ -49,19 +50,19 @@ void MainWindow::updateTabsStyle()
                                         "border-top-left-radius: 4px; "
                                         "border-top-right-radius: 4px; "
                                         "width: "+QString::number(aTabWidth)+"px; "
-                                        "padding: 2px"
+                                        "padding: 2px; "
                                      "}\n"
                                      "QTabBar::tab:hover { "
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
                                                                     "stop: 0 #FAFAFA, stop: 0.4 #F4F4F4,"
-                                                                    "stop: 0.5 #E7E7E7, stop: 1.0 #FAFAFA)"
+                                                                    "stop: 0.5 #E7E7E7, stop: 1.0 #FAFAFA); "
                                      "}\n"
                                      "QTabBar::tab:selected { "
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
                                                                     "stop: 0 #F4F4FF, stop: 0.4 #E0E0FF,"
                                                                     "stop: 0.5 #D0D0FF, stop: 1.0 #F4F4FF); "
                                         "border-color: #9B9B9B; "
-                                        "border-bottom-color: #C2C7CB "
+                                        "border-bottom-color: #C2C7CB; "
                                      "}\n"
                                      "QTabBar::tab:last { "
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
@@ -72,15 +73,15 @@ void MainWindow::updateTabsStyle()
                                      "QTabBar::tab:last:hover { "
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
                                                                     "stop: 0 #EEA0A0, stop: 0.4 #EEAAAA,"
-                                                                    "stop: 0.5 #EE9999, stop: 1.0 #EEA0A0)"
+                                                                    "stop: 0.5 #EE9999, stop: 1.0 #EEA0A0); "
                                      "}\n"
                                      "QTabBar::tab:last:selected, QTabBar::tab:only-one { "
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
                                                                     "stop: 0 #FFC0C0, stop: 0.4 #FFB0B0,"
-                                                                    "stop: 0.5 #EEA0A0, stop: 1.0 #FFC0C0) "
+                                                                    "stop: 0.5 #EEA0A0, stop: 1.0 #FFC0C0); "
                                      "}\n"
                                      "QTabBar::tab:!selected { "
-                                        "margin-top: 3px "
+                                        "margin-top: 3px; "
                                      "}"
                                      );
 }

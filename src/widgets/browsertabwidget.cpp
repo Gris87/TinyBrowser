@@ -11,20 +11,12 @@ BrowserTabWidget::BrowserTabWidget(QWidget *parent) :
 
     QDir aDir(dir);
     aDir.mkdir("icons");
-    aDir.mkdir("storage");
-    aDir.mkdir("cache");
 
     QWebSettings::setIconDatabasePath(dir+"icons");
-    QWebSettings::setOfflineStoragePath(dir+"storage");
-    QWebSettings::setOfflineStorageDefaultQuota(1000000);
-    QWebSettings::enablePersistentStorage(dir+"storage");
-    QWebSettings::setOfflineWebApplicationCachePath(dir+"cache");
-    QWebSettings::setOfflineWebApplicationCacheQuota(1000000);
-    QWebSettings::setMaximumPagesInCache(10);
 
     QWebSettings* aSettings=QWebSettings::globalSettings();
 
-    aSettings->setLocalStoragePath(dir+"storage");
+    //aSettings->setAttribute(QWebSettings::PluginsEnabled, true);
 }
 
 QTabBar* BrowserTabWidget::tabBar() const

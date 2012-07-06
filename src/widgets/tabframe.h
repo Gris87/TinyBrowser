@@ -25,6 +25,9 @@ public:
 private slots:
     void on_goButton_clicked();
     void on_webView_urlChanged(const QUrl &aUrl);
+    void on_webView_loadStarted();
+    void on_webView_loadProgress(int progress);
+    void on_webView_loadFinished(bool good);
 };
 
 #endif // TABFRAME_H

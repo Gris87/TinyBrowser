@@ -14,5 +14,7 @@ int main(int argc, char *argv[])
 
     delete mainwindow;
 
+    QWebSettings::clearIconDatabase();
+
     return res;
 }
