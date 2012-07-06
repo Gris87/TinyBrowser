@@ -1,24 +1,9 @@
-#include "browsertabbar.h"
+#include "src/other/global.h"
 
 BrowserTabBar::BrowserTabBar(QWidget *parent) :
     QTabBar(parent)
 {
     setElideMode(Qt::ElideRight);
-}
-
-void BrowserTabBar::moveTab(int from, int to)
-{
-    if (from==count()-1)
-    {
-        return;
-    }
-
-    if (to==count()-1)
-    {
-        to--;
-    }
-
-    QTabBar::moveTab(from, to);
 }
 
 void BrowserTabBar::mousePressEvent(QMouseEvent *event)

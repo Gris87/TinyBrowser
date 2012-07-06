@@ -11,8 +11,6 @@ class BrowserTabBar : public QTabBar
 public:
     explicit BrowserTabBar(QWidget *parent = 0);
 
-    void moveTab(int from, int to);
-
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);

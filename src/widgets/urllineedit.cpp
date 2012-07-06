@@ -1,4 +1,4 @@
-#include "urllineedit.h"
+#include "src/other/global.h"
 
 UrlLineEdit::UrlLineEdit(QWidget *parent) :
     QLineEdit(parent)

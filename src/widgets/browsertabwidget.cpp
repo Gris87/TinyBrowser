@@ -1,4 +1,4 @@
-#include "browsertabwidget.h"
+#include "src/other/global.h"
 
 BrowserTabWidget::BrowserTabWidget(QWidget *parent) :
     QTabWidget(parent)
@@ -16,7 +16,7 @@ BrowserTabWidget::BrowserTabWidget(QWidget *parent) :
 
     QWebSettings* aSettings=QWebSettings::globalSettings();
 
-    //aSettings->setAttribute(QWebSettings::PluginsEnabled, true);
+    aSettings->setAttribute(QWebSettings::PluginsEnabled, true);
 }
 
 QTabBar* BrowserTabWidget::tabBar() const
@@ -26,4 +26,8 @@ QTabBar* BrowserTabWidget::tabBar() const
 
 void BrowserTabWidget::tabMoved(int from, int to)
 {
+    if (from==count()-1)
+    {
+        tabBar()->moveTab(to, from);
+    }
 }

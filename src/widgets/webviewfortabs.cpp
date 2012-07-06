@@ -1,4 +1,4 @@
-#include "webviewfortabs.h"
+#include "src/other/global.h"
 
 WebViewForTabs::WebViewForTabs(QWidget *parent) :
     QWebView(parent)
