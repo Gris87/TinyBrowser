@@ -111,11 +111,14 @@ void MainWindow::tabUrlChanged(const QUrl &aUrl)
 
 void MainWindow::tabTitleChanged(const QString &aTitle)
 {
-    int index=ui->mainTabWidget->indexOf((QWidget*)sender()->parent());
-
-    if (index>=0)
+    if (aTitle!="")
     {
-        ui->mainTabWidget->setTabText(index, aTitle);
+        int index=ui->mainTabWidget->indexOf((QWidget*)sender()->parent());
+
+        if (index>=0)
+        {
+            ui->mainTabWidget->setTabText(index, aTitle);
+        }
     }
 }
 
@@ -134,6 +137,12 @@ void MainWindow::on_mainTabWidget_tabCloseRequested(int index)
     if (index<ui->mainTabWidget->count()-1)
     {
         delete ui->mainTabWidget->widget(index);
+
+        if (index>0 && index==ui->mainTabWidget->count()-1)
+        {
+            ui->mainTabWidget->setCurrentIndex(index-1);
+        }
+
         setOptimalTabSize();
     }
 }

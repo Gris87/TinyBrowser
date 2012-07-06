@@ -1,7 +1,5 @@
 #include "webviewfortabs.h"
 
-#include <QDebug>
-
 WebViewForTabs::WebViewForTabs(QWidget *parent) :
     QWebView(parent)
 {
@@ -11,11 +9,11 @@ void WebViewForTabs::mousePressEvent(QMouseEvent *event)
 {
     if (event->button()==Qt::MiddleButton)
     {
-        QWebFrame *aFrame=page()->frameAt(event->pos());
+        QWebHitTestResult aHitTest=page()->mainFrame()->hitTestContent(event->pos());
 
-        if (aFrame)
+        if (!aHitTest.linkUrl().isEmpty())
         {
-            emit openNewTab(aFrame->url().toString());
+            emit openNewTab(aHitTest.linkUrl().toString());
         }
     }
     else
