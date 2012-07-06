@@ -39,9 +39,10 @@ void MainWindow::setOptimalTabSize()
                                         "left: 4px "
                                      "}\n"
                                      "QTabBar::tab { "
+
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
-                                                                     "stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,"
-                                                                     "stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3); "
+                                                                    "stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,"
+                                                                    "stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3); "
                                         "border: 2px solid #C4C4C3; "
                                         "border-bottom-color: #C2C7CB; "
                                         "border-top-left-radius: 4px; "
@@ -49,17 +50,33 @@ void MainWindow::setOptimalTabSize()
                                         "width: "+QString::number(aTabWidth)+"px; "
                                         "padding: 2px"
                                      "}\n"
-                                     "QTabBar::tab:selected, QTabBar::tab:hover { "
+                                     "QTabBar::tab:hover { "
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
-                                                                    "stop: 0 #fafafa, stop: 0.4 #f4f4f4,"
-                                                                    "stop: 0.5 #e7e7e7, stop: 1.0 #fafafa)"
-                                     "}\n"
-                                     "QTabBar::tab:last { "
-                                        "width: 16px; "
+                                                                    "stop: 0 #FAFAFA, stop: 0.4 #F4F4F4,"
+                                                                    "stop: 0.5 #E7E7E7, stop: 1.0 #FAFAFA)"
                                      "}\n"
                                      "QTabBar::tab:selected { "
+                                        "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
+                                                                    "stop: 0 #EEEEFF, stop: 0.4 #D0D0FF,"
+                                                                    "stop: 0.5 #C0C0FF, stop: 1.0 #EEEEFF); "
                                         "border-color: #9B9B9B; "
                                         "border-bottom-color: #C2C7CB "
+                                     "}\n"
+                                     "QTabBar::tab:last { "
+                                        "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
+                                                                    "stop: 0 #FFC0C0, stop: 0.4 #FFB0B0,"
+                                                                    "stop: 0.5 #EEA0A0, stop: 1.0 #FFC0C0); "
+                                        "width: 16px; "
+                                     "}\n"
+                                     "QTabBar::tab:last:hover { "
+                                        "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
+                                                                    "stop: 0 #FFDDDD, stop: 0.4 #FFCCCC,"
+                                                                    "stop: 0.5 #EEBBBB, stop: 1.0 #FFDDDD)"
+                                     "}\n"
+                                     "QTabBar::tab:last:selected, QTabBar::tab:only-one { "
+                                        "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
+                                                                    "stop: 0 #FFEEEE, stop: 0.4 #FFD0D0,"
+                                                                    "stop: 0.5 #FFC0C0, stop: 1.0 #FFEEEE) "
                                      "}\n"
                                      "QTabBar::tab:!selected { "
                                         "margin-top: 2px "
@@ -149,7 +166,7 @@ void MainWindow::on_mainTabWidget_tabCloseRequested(int index)
             ui->mainTabWidget->setCurrentIndex(index-1);
         }
 
-        if (ui->mainTabWidget->count()==0)
+        if (ui->mainTabWidget->count()==1)
         {
             ui->mainTabWidget->setTabText(0, "New tab");
         }
