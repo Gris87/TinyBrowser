@@ -17,7 +17,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::setOptimalTabSize()
+void MainWindow::updateTabsStyle()
 {
     int aTabWidth=(ui->mainTabWidget->width()/(ui->mainTabWidget->count()+1));
 
@@ -57,26 +57,26 @@ void MainWindow::setOptimalTabSize()
                                      "}\n"
                                      "QTabBar::tab:selected { "
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
-                                                                    "stop: 0 #EEEEFF, stop: 0.4 #D0D0FF,"
-                                                                    "stop: 0.5 #C0C0FF, stop: 1.0 #EEEEFF); "
+                                                                    "stop: 0 #F4F4FF, stop: 0.4 #E0E0FF,"
+                                                                    "stop: 0.5 #D0D0FF, stop: 1.0 #F4F4FF); "
                                         "border-color: #9B9B9B; "
                                         "border-bottom-color: #C2C7CB "
                                      "}\n"
                                      "QTabBar::tab:last { "
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
-                                                                    "stop: 0 #FFC0C0, stop: 0.4 #FFB0B0,"
-                                                                    "stop: 0.5 #EEA0A0, stop: 1.0 #FFC0C0); "
+                                                                    "stop: 0 #EE9090, stop: 0.4 #EE7070,"
+                                                                    "stop: 0.5 #EE6060, stop: 1.0 #EE9090); "
                                         "width: 16px; "
                                      "}\n"
                                      "QTabBar::tab:last:hover { "
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
-                                                                    "stop: 0 #FFDDDD, stop: 0.4 #FFCCCC,"
-                                                                    "stop: 0.5 #EEBBBB, stop: 1.0 #FFDDDD)"
+                                                                    "stop: 0 #EEA0A0, stop: 0.4 #EEAAAA,"
+                                                                    "stop: 0.5 #EE9999, stop: 1.0 #EEA0A0)"
                                      "}\n"
                                      "QTabBar::tab:last:selected, QTabBar::tab:only-one { "
                                         "background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,"
-                                                                    "stop: 0 #FFEEEE, stop: 0.4 #FFD0D0,"
-                                                                    "stop: 0.5 #FFC0C0, stop: 1.0 #FFEEEE) "
+                                                                    "stop: 0 #FFC0C0, stop: 0.4 #FFB0B0,"
+                                                                    "stop: 0.5 #EEA0A0, stop: 1.0 #FFC0C0) "
                                      "}\n"
                                      "QTabBar::tab:!selected { "
                                         "margin-top: 2px "
@@ -86,14 +86,14 @@ void MainWindow::setOptimalTabSize()
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    setOptimalTabSize();
+    updateTabsStyle();
 
     QMainWindow::resizeEvent(event);
 }
 
 void MainWindow::showEvent(QShowEvent *event)
 {
-    setOptimalTabSize();
+    updateTabsStyle();
 
     QMainWindow::showEvent(event);
 }
@@ -116,7 +116,7 @@ void MainWindow::addTab(QString aUrl)
         ui->mainTabWidget->insertTab(ui->mainTabWidget->count()-1, aTab, aUrl);
     }
 
-    setOptimalTabSize();
+    updateTabsStyle();
 }
 
 void MainWindow::tabUrlChanged(const QUrl &/*aUrl*/)
@@ -171,7 +171,7 @@ void MainWindow::on_mainTabWidget_tabCloseRequested(int index)
             ui->mainTabWidget->setTabText(0, "New tab");
         }
 
-        setOptimalTabSize();
+        updateTabsStyle();
     }
 }
 

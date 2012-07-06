@@ -21,7 +21,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void setOptimalTabSize();
+    void updateTabsStyle();
 
 protected:
     void resizeEvent(QResizeEvent *event);
