@@ -3,6 +3,8 @@
 
 #include <QDebug>
 
+#include <QNetworkCookieJar>
+
 #include "src/main/mainwindow.h"
 
 #include "src/widgets/tabframe.h"
@@ -11,6 +13,8 @@
 #include "src/widgets/webviewfortabs.h"
 
 extern MainWindow* mainwindow;
+
+extern QNetworkCookieJar* cookieJar;
 
 extern QString dir;
 

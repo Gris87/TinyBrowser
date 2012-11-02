@@ -7,12 +7,15 @@ int main(int argc, char *argv[])
 
     dir=QApplication::applicationDirPath()+"/";
 
+    cookieJar=new QNetworkCookieJar();
+
     mainwindow=new MainWindow;
     mainwindow->show();
 
     int res=a.exec();
 
     delete mainwindow;
+    delete cookieJar;
 
     QWebSettings::clearIconDatabase();
 

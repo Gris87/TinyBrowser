@@ -6,6 +6,9 @@ TabFrame::TabFrame(QString aUrl, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->webView->page()->networkAccessManager()->setCookieJar(cookieJar);
+    cookieJar->setParent(0);
+
     ui->progressBar->setVisible(false);
 
     ui->progressBar->setStyleSheet(
