@@ -162,6 +162,16 @@ void MainWindow::tabIconChanged()
     }
 }
 
+void MainWindow::tabIndexChanged()
+{
+    ((TabFrame *)ui->mainTabWidget->currentWidget())->ui->webView->setFocus();
+}
+
+void MainWindow::on_mainTabWidget_currentChanged(int /*index*/)
+{
+    QTimer::singleShot(0, this, SLOT(tabIndexChanged()));
+}
+
 void MainWindow::on_mainTabWidget_tabCloseRequested(int index)
 {
     if (index<ui->mainTabWidget->count()-1)

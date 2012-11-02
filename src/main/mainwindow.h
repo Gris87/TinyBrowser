@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 
+#include <QTimer>
+
 namespace Ui {
 class MainWindow;
 }
@@ -38,7 +40,9 @@ private slots:
     void tabUrlChanged(const QUrl &aUrl);
     void tabTitleChanged(const QString &aTitle);
     void tabIconChanged();
+    void tabIndexChanged();
 
+    void on_mainTabWidget_currentChanged(int index);
     void on_mainTabWidget_tabCloseRequested(int index);
     void on_actionClose_current_tab_triggered();
     void on_actionUndo_triggered();

@@ -7,6 +7,7 @@
 
 #include "src/widgets/tabframe.h"
 #include "src/widgets/urllineedit.h"
+#include "src/widgets/webpagefortab.h"
 #include "src/widgets/webviewfortabs.h"
 
 extern MainWindow* mainwindow;

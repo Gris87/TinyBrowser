@@ -3,6 +3,7 @@
 WebViewForTabs::WebViewForTabs(QWidget *parent) :
     QWebView(parent)
 {
+    setPage(new WebPageForTab(this));
 }
 
 void WebViewForTabs::mousePressEvent(QMouseEvent *event)

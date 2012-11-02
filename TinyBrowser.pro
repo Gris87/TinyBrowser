@@ -28,7 +28,8 @@ SOURCES +=  src/main.cpp \
             src/widgets/webviewfortabs.cpp \
             src/widgets/browsertabwidget.cpp \
             src/widgets/browsertabbar.cpp \
-            src/other/global.cpp
+            src/other/global.cpp \
+            src/widgets/webpagefortab.cpp
 
 HEADERS  += src/main/mainwindow.h \
             src/widgets/tabframe.h \
@@ -36,7 +37,8 @@ HEADERS  += src/main/mainwindow.h \
             src/widgets/webviewfortabs.h \
             src/widgets/browsertabwidget.h \
             src/widgets/browsertabbar.h \
-            src/other/global.h
+            src/other/global.h \
+            src/widgets/webpagefortab.h
 
 FORMS    += src/main/mainwindow.ui \
             src/widgets/tabframe.ui
